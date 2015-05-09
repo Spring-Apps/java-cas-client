@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>cas-client</artifactId>
+        <groupId>org.jasig.cas.client</groupId>
+        <version>3.3.0</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <name>Jasig CAS Client for Java - Distributed Proxy Storage Support: Liferay 6.2</name>
+
+    <artifactId>cas-client-support-distributed-liferay</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jasig.cas.client</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.liferay.portal</groupId>
+            <artifactId>portal-service</artifactId>
+            <version>6.2.2</version>
+        </dependency>
+
+    </dependencies>
+</project>
