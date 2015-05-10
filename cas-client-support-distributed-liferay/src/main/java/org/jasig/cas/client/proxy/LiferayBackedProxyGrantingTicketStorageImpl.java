@@ -39,27 +39,28 @@ public final class LiferayBackedProxyGrantingTicketStorageImpl extends AbstractE
     public LiferayBackedProxyGrantingTicketStorageImpl() {
     }
 
-    public  LiferayBackedProxyGrantingTicketStorageImpl(final PortalCache<String, String> cache) {
+    public LiferayBackedProxyGrantingTicketStorageImpl(final PortalCache<String, String> cache) {
         this.cache = cache;
     }
 
     public void saveInternal(final String proxyGrantingTicketIou, final String proxyGrantingTicket) {
-        LOG.debug("PUT: PGTIOU [{}] Ticket [{}]", proxyGrantingTicketIou, proxyGrantingTicket);
+        LOG.info("PUT: PGTIOU [{}] Ticket [{}]", proxyGrantingTicketIou, proxyGrantingTicket);
         getCacheInternal().put(proxyGrantingTicketIou, proxyGrantingTicket);
     }
 
     public String retrieveInternal(final String proxyGrantingTicketIou) {
         final String ticket = getCacheInternal().get(proxyGrantingTicketIou);
-        LOG.debug("GET: PGTIOU [{}] Ticket [{}]", proxyGrantingTicketIou, ticket != null ? ticket : "not found");
+        LOG.info("GET: PGTIOU [{}] Ticket [{}]", proxyGrantingTicketIou, ticket != null ? ticket : "not found");
         return (ticket == null) ? null : ticket;
     }
 
     public PortalCache<String, String> getCacheInternal() {
         if (cache == null) {
             cache = MultiVMPoolUtil.getCache(CACHE_NAME);
-            if (cache == null)
+            if (cache == null) {
                 throw new RuntimeException("Unable to access Liferay VM Pooled cache");
-            LOG.debug("Cache [{}] initialised from LR MultiVMPool ", cache.getName());
+            }
+            LOG.info("Cache [{}] initialised from LR MultiVMPool ", cache.getName());
         }
         return cache;
     }
