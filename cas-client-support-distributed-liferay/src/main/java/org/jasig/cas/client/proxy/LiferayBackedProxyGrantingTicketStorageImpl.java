@@ -39,16 +39,18 @@ public final class LiferayBackedProxyGrantingTicketStorageImpl extends AbstractE
     public LiferayBackedProxyGrantingTicketStorageImpl() {
     }
 
-    public LiferayBackedProxyGrantingTicketStorageImpl(final PortalCache<String, String> cache) {
+    public  LiferayBackedProxyGrantingTicketStorageImpl(final PortalCache<String, String> cache) {
         this.cache = cache;
     }
 
     public void saveInternal(final String proxyGrantingTicketIou, final String proxyGrantingTicket) {
+        LOG.debug("PUT: PGTIOU [{}] Ticket [{}]", proxyGrantingTicketIou, proxyGrantingTicket);
         getCacheInternal().put(proxyGrantingTicketIou, proxyGrantingTicket);
     }
 
     public String retrieveInternal(final String proxyGrantingTicketIou) {
         final String ticket = getCacheInternal().get(proxyGrantingTicketIou);
+        LOG.debug("GET: PGTIOU [{}] Ticket [{}]", proxyGrantingTicketIou, ticket != null ? ticket : "not found");
         return (ticket == null) ? null : ticket;
     }
 
